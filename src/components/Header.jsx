@@ -44,26 +44,11 @@ export const HeaderSubtitle = styled.h2`
   @media (max-width: 400px) {
     font-size: 1em;
   }
-`
-export const HeaderLogo = styled.img`
-  width: 100px;
-  height: auto;
-  margin: 0 auto;
-  display: block;
-
-  @media (max-width: 600px) {
-    width: 80px;
-  }
-  
-  @media (max-width: 400px) {
-    width: 60px;
-  }
 `;
 
 export const HeaderComponent = () => {
   return (
     <Header>
-      <HeaderLogo src="logo.png" alt="Logo" />
       <HeaderText>Make it happen</HeaderText>
       <HeaderSubtitle>A ToDo-app created by Cathi</HeaderSubtitle>
     </Header>

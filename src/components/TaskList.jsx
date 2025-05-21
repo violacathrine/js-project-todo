@@ -1,26 +1,40 @@
 import { useTaskStore } from "../stores/useTaskStore";
+import { SlCheck, SlClose } from "react-icons/sl";
+import {
+  StyledTaskList,
+  TaskItem,
+  TaskText,
+  CompleteButton,
+  DeleteButton,
+  TaskActions,
+  Icon
+} from './TaskList.styles.jsx';
 
 export const TaskList = () => {
   const tasks = useTaskStore((state) => state.tasks);
   const deleteTask = useTaskStore((state) => state.deleteTask);
   const completeTask = useTaskStore((state) => state.completeTask);
 
-return (
-  <ul>
-    {tasks.map((task) => (
-      <li key="task.id">
-        <span
-          style={{
-            textDecoration: task.isCompleted ? 'line-through' : 'unset',
-          }}
-        >
-          {task.text}{" "}
-        </span>{!task.isCompleted ? (
-          <button onClick={() => completeTask(task.id)}>Done</button>
-        ) : null}
-        <button onClick={() => deleteTask(task.id)}>X</button>
-      </li>
-    ))}
-  </ul>
-);
+  return (
+    <StyledTaskList>
+      {tasks.map((task) => (
+        <TaskItem key={task.id} $isCompleted={task.isCompleted}>
+          <TaskText>{task.text}</TaskText>
+
+          <TaskActions>
+            {!task.isCompleted ? (
+              <CompleteButton onClick={() => completeTask(task.id)}>
+                <SlCheck />
+              </CompleteButton>
+            ) : null}
+
+            <DeleteButton onClick={() => deleteTask(task.id)}>
+              <SlClose />
+            </DeleteButton>
+            
+          </TaskActions>
+        </TaskItem>
+      ))}
+    </StyledTaskList>
+  );
 };
