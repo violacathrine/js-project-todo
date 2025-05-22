@@ -1,45 +1,62 @@
-import React from 'react';
-import { useTaskStore } from "../stores/useTaskStore";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { useTaskStore } from '../stores/useTaskStore';
+import { FaRegTrashAlt, FaStar, FaRegStar } from 'react-icons/fa';
 
 import {
-  StyledTaskList,
-  TaskItem,
+  TaskListContainer,
+  TaskItemWrapper,
   TaskText,
-  DeleteButton,
   TaskActions,
-  Icon,
-  CheckboxContainer,
-  TaskCheckbox
+  DeleteButton,
+  StarredButton, 
+  Checkbox 
 } from './TaskList.styles.jsx';
 
 export const TaskList = () => {
   const tasks = useTaskStore((state) => state.tasks);
   const deleteTask = useTaskStore((state) => state.deleteTask);
   const completeTask = useTaskStore((state) => state.completeTask);
+  const toggleStarred = useTaskStore((state) => state.toggleStarred);
+  const showStarredOnly = useTaskStore((state) => state.showStarredOnly);
+
+  const filteredTasks = showStarredOnly
+    ? tasks.filter(task => task.isStarred)
+    : tasks;
 
   return (
-    <StyledTaskList>
-      {tasks.map((task) => (
-        <TaskItem key={task.id} $isCompleted={task.isCompleted}>
-          <CheckboxContainer>
-            <TaskCheckbox
-              type="checkbox"
-              title="Complete Task"
-              checked={task.isCompleted}
-              onChange={() => completeTask(task.id)}
-            />
-            <TaskText $isCompleted={task.isCompleted}>{task.text}</TaskText>
-          </CheckboxContainer>
+    <TaskListContainer>
+      {filteredTasks.length === 0 && (
+        <p style={{ textAlign: 'center', color: '#666', margin: '20px 0' }}>
+          {showStarredOnly ? 'No starred tasks yet!' : 'No tasks to show yet. Add a new one!'}
+        </p>
+      )}
+
+      {filteredTasks.map((task) => (
+        <TaskItemWrapper key={task.id} className={task.isCompleted ? 'completed' : ''}>
+
+          <Checkbox
+            type="checkbox"
+            checked={task.isCompleted}
+            onChange={() => completeTask(task.id)} 
+          />
+          <TaskText onClick={() => completeTask(task.id)}>
+            {task.text}
+          </TaskText>
 
           <TaskActions>
-            <DeleteButton onClick={() => deleteTask(task.id)} title="Delete Task">
-              <Icon><FaRegTrashAlt />
-              </Icon>
+            <StarredButton
+              onClick={() => toggleStarred(task.id)} 
+              $isStarred={task.isStarred} 
+              title={task.isStarred ? "Remove star" : "Star this task"}
+            >
+              {task.isStarred ? <FaStar /> : <FaRegStar />}
+            </StarredButton>
+
+            <DeleteButton onClick={() => deleteTask(task.id)} title="Delete task">
+              <FaRegTrashAlt />
             </DeleteButton>
           </TaskActions>
-        </TaskItem>
+        </TaskItemWrapper>
       ))}
-    </StyledTaskList>
+    </TaskListContainer>
   );
 };
