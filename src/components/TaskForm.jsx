@@ -3,6 +3,7 @@ import { useTaskStore } from "../stores/useTaskStore";
 import { TaskList } from "./TaskList";
 import { SlPlus } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { MdFileDownloadDone } from "react-icons/md";
 import {
   FormContainer,
   StyledForm,
@@ -10,13 +11,15 @@ import {
   FormInput,
   AddButton,
   IconWrapper,
-  ClearAllButton,
+  DeleteAllButton,
+  CompleteAllButton
 } from './TaskForm.styles.jsx'; 
 
 
 export const TaskForm = () => {
   const [taskValue, setTaskValue] = useState("");
   const addTask = useTaskStore((state) => state.addTask);
+  const completeAllTasks = useTaskStore((state) => state.completeAllTasks);
   const removeAllTasks = useTaskStore((state) => state.removeAllTasks);
 
   const handleSubmit = (e) => {
@@ -28,7 +31,11 @@ export const TaskForm = () => {
     }
   };
 
-  const handleClearAll = () => {
+  const handleCompleteAll = () => {
+      completeAllTasks();
+  };
+
+  const handleDeleteAll = () => {
     if (window.confirm("Are you sure you want to delete all tasks? This action cannot be undone.")) {
       removeAllTasks();
     }
@@ -52,10 +59,14 @@ export const TaskForm = () => {
         </AddButton>
       </StyledForm>
       <TaskList />
-      
-      <ClearAllButton onClick={handleClearAll} title="Delete all tasks">
+
+<CompleteAllButton onClick={handleCompleteAll} title="Complete all tasks">
+        <IconWrapper><MdFileDownloadDone /></IconWrapper>Complete all tasks
+      </CompleteAllButton>
+
+      <DeleteAllButton onClick={handleDeleteAll} title="Delete all tasks">
         <IconWrapper><FaRegTrashAlt /></IconWrapper> Delete all tasks
-      </ClearAllButton>
+      </DeleteAllButton>
     </FormContainer>
   );
 };

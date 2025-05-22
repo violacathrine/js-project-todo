@@ -1,0 +1,8 @@
+Todo: Todo
+
+[] implement timestamp
+[] get delete and complete button to work with function
+[] only show delete/complete when atleast 1 task in liste
+[] add counter tho show how many task remaining/is
+[] archived tab?
+[] styling? 

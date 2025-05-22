@@ -67,10 +67,10 @@ export const IconWrapper = styled.span`
   justify-content: center;
 `;
 
-export const ClearAllButton = styled.button`
+export const DeleteAllButton = styled.button`
   background-color: #dc3545; 
   color: white;
-  width: 100%; 
+  width: 40%; 
   height: 45px;
   border: none;
   border-radius: 4px;
@@ -85,6 +85,32 @@ export const ClearAllButton = styled.button`
 
   &:hover {
     background-color: #c82333;
+  }
+
+  ${IconWrapper} {
+    margin-right: 8px;
+    font-size: 1.3em;
+  }
+`;
+
+export const CompleteAllButton = styled.button`
+  background-color: rgb(19, 152, 19);
+  color: white;
+  width: 40%; 
+  height: 45px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: rgba(19, 152, 19, 0.57);
   }
 
   ${IconWrapper} {
