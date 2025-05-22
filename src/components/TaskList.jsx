@@ -1,13 +1,16 @@
+import React from 'react';
 import { useTaskStore } from "../stores/useTaskStore";
-import { SlCheck, SlClose } from "react-icons/sl";
+import { FaRegTrashAlt } from "react-icons/fa";
+
 import {
   StyledTaskList,
   TaskItem,
   TaskText,
-  CompleteButton,
   DeleteButton,
   TaskActions,
-  Icon
+  Icon,
+  CheckboxContainer,
+  TaskCheckbox
 } from './TaskList.styles.jsx';
 
 export const TaskList = () => {
@@ -19,19 +22,21 @@ export const TaskList = () => {
     <StyledTaskList>
       {tasks.map((task) => (
         <TaskItem key={task.id} $isCompleted={task.isCompleted}>
-          <TaskText>{task.text}</TaskText>
+          <CheckboxContainer>
+            <TaskCheckbox
+              type="checkbox"
+              title="Complete Task"
+              checked={task.isCompleted}
+              onChange={() => completeTask(task.id)}
+            />
+            <TaskText $isCompleted={task.isCompleted}>{task.text}</TaskText>
+          </CheckboxContainer>
 
           <TaskActions>
-            {!task.isCompleted ? (
-              <CompleteButton onClick={() => completeTask(task.id)}>
-                <SlCheck />
-              </CompleteButton>
-            ) : null}
-
-            <DeleteButton onClick={() => deleteTask(task.id)}>
-              <SlClose />
+            <DeleteButton onClick={() => deleteTask(task.id)} title="Delete Task">
+              <Icon><FaRegTrashAlt />
+              </Icon>
             </DeleteButton>
-            
           </TaskActions>
         </TaskItem>
       ))}

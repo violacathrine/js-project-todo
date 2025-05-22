@@ -32,9 +32,9 @@ export const HeaderText = styled.h1`
   }
 `
 export const HeaderSubtitle = styled.h2`
-  font-size: 1.5em;
+  font-size: 1em;
   color:rgb(0, 0, 0);
-  margin: 0;
+  margin-top: 10px;
   text-align: center;
 
   @media (max-width: 600px) {
