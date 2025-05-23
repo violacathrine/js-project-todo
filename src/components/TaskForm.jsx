@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useTaskStore } from "../stores/useTaskStore";
 import { TaskList } from "./TaskList";
+import { Count } from "./Count"
 
-import { SlPlus } from "react-icons/sl";
 import { FaRegTrashAlt, FaCheckCircle, FaRegCheckCircle } from 'react-icons/fa';
 import {
   FormContainer,
@@ -65,9 +65,10 @@ export const TaskForm = () => {
           required
         />
         <AddButton type="submit" title="Add task">
-          <IconWrapper><SlPlus /></IconWrapper>
+          <IconWrapper>+</IconWrapper>
         </AddButton>
       </StyledForm>
+      <Count />
 
       <TaskList />
 

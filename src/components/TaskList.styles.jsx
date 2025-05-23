@@ -96,3 +96,10 @@ export const EmptyListMessage = styled.p`
   color: #666;
   margin: 20px 0;
 `;
+
+export const TimestampText = styled.span`
+display: block;
+  font-size: 16px;
+  color: #888;
+  margin: 5px 10px;
+`;

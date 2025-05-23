@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const FormContainer = styled.div`
   padding: 20px;
-  background-color: #e0f2f7;
+  background-color:rgb(237, 239, 239);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
@@ -64,7 +64,8 @@ export const IconWrapper = styled.span`
 
 export const StyledFunctionButton = styled.button`
   color: white;
-  flex-grow: 1; 
+  width: 40%;
+  flex-grow: 1;
   height: 40px;
   border: none;
   border-radius: 4px;
@@ -78,10 +79,10 @@ export const StyledFunctionButton = styled.button`
   transition: background-color 0.2s ease-in-out;
 
 
-  background-color: ${props => props.$type === 'delete' ? '#dc3545' : '#28a745'};
+  background-color: ${props => props.$type === 'delete' ? "#c82333" : "#066028"};
 
   &:hover {
-    background-color: ${props => props.$type === 'delete' ? '#c82333' : '#218838'};
+    background-color: ${props => props.$type === 'delete' ? "#dc3545" : '#218838'};
   }
 
   ${IconWrapper} {

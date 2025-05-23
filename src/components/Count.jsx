@@ -1,10 +1,16 @@
-import useTaskStore from "../stores/useTaskStore";
+import { useTaskStore } from "../stores/useTaskStore";
 
-const Counter = () => {
+export const Count = () => {
   const tasks = useTaskStore((state) => state.tasks);
-  const notCompleted = tasks.filter((task) => !task.completed).length;
+  const completed = tasks.filter((task) => task.isCompleted).length;
+  const totalTasks = tasks.length; 
+  const starredTasks = tasks.filter((task) => task.isStarred).length;
 
-  return <p>Uncompleted tasks: {notCompleted}</p>;
-}
-
-export default Counter; 
+  return (
+    <>
+    <p>
+      Completed tasks: {completed} / {totalTasks} </p>
+      <p>Starred tasks: {starredTasks}</p>
+      </>
+  );
+};

@@ -19,7 +19,7 @@ export const Header = styled.header`
 
 export const HeaderText = styled.h1`
   font-size: 2.5em;
-  color:rgb(24, 148, 183);
+  color:rgb(0, 0, 0);
   margin: 0;
   text-align: center;
 
@@ -50,7 +50,7 @@ export const HeaderComponent = () => {
   return (
     <Header>
       <HeaderText>Make it happen</HeaderText>
-      <HeaderSubtitle>A ToDo-app created by Cathi</HeaderSubtitle>
+      <HeaderSubtitle>A simple but efficent to-do app</HeaderSubtitle>
     </Header>
   );
 }

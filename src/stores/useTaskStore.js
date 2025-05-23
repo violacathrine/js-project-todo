@@ -17,6 +17,7 @@ export const useTaskStore = create(
                 text,
                 isCompleted: false,
                 isStarred: false,
+                createdAt: new Date().toISOString(),
               },
             ],
           })),
@@ -39,7 +40,6 @@ export const useTaskStore = create(
           set((state) => ({
             tasks: state.tasks.map((task) => ({ ...task, isCompleted: true })),
           })),
-
 
         uncompleteAllTasks: () =>
           set((state) => ({

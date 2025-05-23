@@ -1,6 +1,7 @@
 // src/components/TaskList.jsx
 import { useTaskStore } from '../stores/useTaskStore';
 import { FaRegTrashAlt, FaStar, FaRegStar } from 'react-icons/fa';
+import moment from "moment";
 
 import {
   TaskListContainer,
@@ -10,7 +11,8 @@ import {
   DeleteButton,
   StarredButton,
   Checkbox,
-  EmptyListMessage
+  EmptyListMessage,
+  TimestampText
 } from './TaskList.styles.jsx';
 
 export const TaskList = () => {
@@ -42,22 +44,26 @@ export const TaskList = () => {
         return -1; // a is starred and b is not -> a comes first
       }
       if (!a.isStarred && b.isStarred) {
-        return 1; // b is starred and a is not -> b comes first
+        return 1;
       }
     }
-
-    // If neither task is starred or both are starred, we keep the original order.
-    // or both tasks are starred or both are not starred
+    // Om ingen annan sortering, sortera efter createdAt för att visa de senast tillagda först
+    // Använd bara createdAt om båda har det (för att hantera äldre uppgifter utan timestamp)
+    if (a.createdAt && b.createdAt) {
+      return new Date(b.createdAt) - new Date(a.createdAt); // Nyaste först
+    }
     return 0;
   });
 
-  // Display the sorted tasks
   const displayedTasks = sortedTasks;
 
   return (
     <TaskListContainer>
       {displayedTasks.length === 0 && (
         <EmptyListMessage>
+          <div className="image-wrapper">
+            <img src="/empty.png" alt="Picture of no tasks" />
+          </div>
           No task added yet. Add one to get started!
         </EmptyListMessage>
       )}
@@ -79,6 +85,9 @@ export const TaskList = () => {
             >
               {task.text}
             </TaskText>
+            <TimestampText>
+              {moment(task.createdAt).format("YYYY-MM-DD")}
+            </TimestampText>
 
             <TaskActions>
               <StarredButton
