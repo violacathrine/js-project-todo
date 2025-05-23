@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-  background-color:rgb(255, 255, 255);
   padding: 20px;
-  color: white;
+  background-color:rgb(237, 239, 239);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  box-sizing: border-box;
     
   text-align: center;
   font-size: 1.3rem;
@@ -22,6 +26,7 @@ export const HeaderText = styled.h1`
   color:rgb(0, 0, 0);
   margin: 0;
   text-align: center;
+  letter-spacing: 5px;
 
   @media (max-width: 600px) {
     font-size: 2em;
