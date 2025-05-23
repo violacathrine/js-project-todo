@@ -26,7 +26,16 @@ export const TaskItemWrapper = styled.li`
   }
 `;
 
-export const TaskText = styled.span`
+export const TaskTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-right: 10px;
+`;
+
+export const TaskText = styled.label`
+  display: flex;
+  align-items: center;
   flex-grow: 1;
   margin-right: 10px;
   font-size: 1.1em;
@@ -89,17 +98,22 @@ export const Checkbox = styled.input`
   height: 20px;
   cursor: pointer;
   flex-shrink: 0;
+  accent-color:rgb(75, 24, 203);
 `;
 
-export const EmptyListMessage = styled.p`
+export const EmptyListMessage = styled.div`
   text-align: center;
   color: #666;
   margin: 20px 0;
 `;
 
 export const TimestampText = styled.span`
-display: block;
   font-size: 16px;
-  color: #888;
-  margin: 5px 10px;
+  color: #333;
+  margin-top: 5px;
+
+  @media (min-width: 767px) {
+    font-size: 14px;
+    display: block;
+  }
 `;

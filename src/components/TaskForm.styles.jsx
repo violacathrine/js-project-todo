@@ -21,9 +21,9 @@ export const StyledForm = styled.form`
   margin-bottom: 20px;
 `;
 
-export const FormLabel = styled.label`
-  display: none;
-  `;
+export const FormLabel = styled.label.attrs(() => ({
+  className: 'visually-hidden'
+}))``;
 
 export const FormInput = styled.input`
   flex-grow: 1;
@@ -36,7 +36,7 @@ export const FormInput = styled.input`
 `;
 
 export const AddButton = styled.button`
-  background-color: #008CBA;
+  background-color:rgb(75, 24, 203);
   color: white;
   width: 40px;
   height: 40px;
@@ -51,7 +51,7 @@ export const AddButton = styled.button`
   flex-shrink: 0;
 
   &:hover {
-    background-color: #007bb5;
+    background-color: gray;
   }
 `;
 
@@ -79,10 +79,10 @@ export const StyledFunctionButton = styled.button`
   transition: background-color 0.2s ease-in-out;
 
 
-  background-color: ${props => props.$type === 'delete' ? "#c82333" : "#066028"};
+  background-color: ${props => props.type === 'delete' ? "rgb(75, 24, 203);" : "rgb(75, 24, 203);"};
 
   &:hover {
-    background-color: ${props => props.$type === 'delete' ? "#dc3545" : '#218838'};
+    background-color: ${props => props.type === 'delete' ? "rgb(75, 24, 203);" : 'gray'};
   }
 
   ${IconWrapper} {
@@ -90,11 +90,18 @@ export const StyledFunctionButton = styled.button`
     font-size: 1.3em;
   }
 `;
-
 export const ButtonRow = styled.div`
   display: flex;
   flex-wrap: wrap; 
   gap: 10px; 
   margin-top: 20px; 
-  width: 100%; 
+  width: 100%;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
 `;

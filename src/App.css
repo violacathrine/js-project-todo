@@ -5,6 +5,7 @@ body {
 
 p {
   font-size: 18px;
+  margin: 0;
 }
 
 .image-wrapper {
@@ -16,4 +17,28 @@ p {
 .image-wrapper img {
   width: 150px;
   margin: 20px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.count-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+@media (min-width: 768px) {
+  .count-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }

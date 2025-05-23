@@ -7,10 +7,9 @@ export const Count = () => {
   const starredTasks = tasks.filter((task) => task.isStarred).length;
 
   return (
-    <>
-    <p>
-      Completed tasks: {completed} / {totalTasks} </p>
-      <p>Starred tasks: {starredTasks}</p>
-      </>
+      <div className="count-container">
+        <p>Completed tasks: {completed} / {totalTasks}</p>
+        <p>Starred tasks: {starredTasks}</p>
+      </div>
   );
 };

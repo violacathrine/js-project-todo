@@ -31,26 +31,11 @@ export const HeaderText = styled.h1`
     font-size: 1.5em;
   }
 `
-export const HeaderSubtitle = styled.h2`
-  font-size: 1em;
-  color:rgb(0, 0, 0);
-  margin-top: 10px;
-  text-align: center;
-
-  @media (max-width: 600px) {
-    font-size: 1.2em;
-  }
-  
-  @media (max-width: 400px) {
-    font-size: 1em;
-  }
-`;
 
 export const HeaderComponent = () => {
   return (
     <Header>
-      <HeaderText>Make it happen</HeaderText>
-      <HeaderSubtitle>A simple but efficent to-do app</HeaderSubtitle>
+      <HeaderText>TODO LIST</HeaderText>
     </Header>
   );
 }

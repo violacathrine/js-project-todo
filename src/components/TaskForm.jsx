@@ -54,7 +54,9 @@ export const TaskForm = () => {
   return (
     <FormContainer>
       <StyledForm onSubmit={handleSubmit}>
-        <FormLabel htmlFor="new-task"></FormLabel>
+        <FormLabel htmlFor="new-task" className="visually-hidden">
+          Task input
+        </FormLabel>
         <FormInput
           type="text"
           id="new-task"
@@ -85,7 +87,7 @@ export const TaskForm = () => {
                 <FaCheckCircle />
               )}
             </IconWrapper>
-            {allTasksCompleted ? 'Unmark all' : 'Mark all as completed'}
+            {allTasksCompleted ? 'Unmark all' : 'Complete all'}
           </StyledFunctionButton>
 
           {tasks.length > 0 && (
