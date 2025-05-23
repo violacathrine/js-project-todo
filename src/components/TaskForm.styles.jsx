@@ -22,15 +22,8 @@ export const StyledForm = styled.form`
 `;
 
 export const FormLabel = styled.label`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-`;
+  display: none;
+  `;
 
 export const FormInput = styled.input`
   flex-grow: 1;
@@ -76,15 +69,16 @@ export const StyledFunctionButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.2s ease-in-out;
 
-  /* Dynamisk bakgrundsfärg baserat på '$type' prop */
-  background-color: ${props => props.$type === 'delete' ? '#dc3545' : '#28a745'}; /* Röd för 'delete', grön för 'complete' */
+
+  background-color: ${props => props.$type === 'delete' ? '#dc3545' : '#28a745'};
 
   &:hover {
     background-color: ${props => props.$type === 'delete' ? '#c82333' : '#218838'};
@@ -102,18 +96,4 @@ export const ButtonRow = styled.div`
   gap: 10px; 
   margin-top: 20px; 
   width: 100%; 
-`;
-
-export const ToggleListButton = styled(StyledFunctionButton)` 
-  background-color: ${props => props.$active ? '#007bff' : '#6c757d'}; 
-  flex-grow: 1; 
-
-  &:hover {
-    background-color: ${props => props.$active ? '#0056b3' : '#5a6268'};
-  }
-
-  ${IconWrapper} {
-    margin-right: 5px;
-    font-size: 1.1em; 
-  }
 `;

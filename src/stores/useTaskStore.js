@@ -1,46 +1,63 @@
+// src/stores/useTaskStore.js
 import { create } from "zustand";
+import { devtools, persist } from "zustand/middleware";
 
-export const useTaskStore = create((set) => ({
-  tasks: [],
+export const useTaskStore = create(
+  devtools(
+    persist(
+      (set) => ({
+        tasks: [],
 
-  addTask: (text) =>
-    set((state) => ({
-      tasks: [
-        ...state.tasks,
-        { id: Date.now(), text, isCompleted: false, isStarred: false },
-      ],
-    })),
+        addTask: (text) =>
+          set((state) => ({
+            tasks: [
+              ...state.tasks,
+              {
+                id: Date.now(),
+                text,
+                isCompleted: false,
+                isStarred: false,
+              },
+            ],
+          })),
 
-  deleteTask: (id) =>
-    set((state) => ({
-      tasks: state.tasks.filter((task) => task.id !== id),
-    })),
+        deleteTask: (id) =>
+          set((state) => ({
+            tasks: state.tasks.filter((task) => task.id !== id),
+          })),
 
-  completeTask: (id) =>
-    set((state) => ({
-      tasks: state.tasks.map((task) =>
-        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
-      ),
-    })),
+        completeTask: (id) =>
+          set((state) => ({
+            tasks: state.tasks.map((task) =>
+              task.id === id
+                ? { ...task, isCompleted: !task.isCompleted }
+                : task
+            ),
+          })),
 
-  completeAllTasks: () =>
-    set((state) => ({
-      tasks: state.tasks.map((task) => ({ ...task, isCompleted: true })),
-    })),
+        completeAllTasks: () =>
+          set((state) => ({
+            tasks: state.tasks.map((task) => ({ ...task, isCompleted: true })),
+          })),
 
-  removeAllTasks: () => set({ tasks: [] }),
 
-  toggleStarred: (id) =>
-    set((state) => ({
-      tasks: state.tasks.map((task) =>
-        task.id === id ? { ...task, isStarred: !task.isStarred } : task
-      ),
-    })),
+        uncompleteAllTasks: () =>
+          set((state) => ({
+            tasks: state.tasks.map((task) => ({ ...task, isCompleted: false })),
+          })),
 
-  showStarredOnly: false,
+        removeAllTasks: () => set({ tasks: [] }),
 
-  toggleShowStarredOnly: () =>
-    set((state) => ({
-      showStarredOnly: !state.showStarredOnly,
-    })),
-}));
+        toggleStarred: (id) =>
+          set((state) => ({
+            tasks: state.tasks.map((task) =>
+              task.id === id ? { ...task, isStarred: !task.isStarred } : task
+            ),
+          })),
+      }),
+      {
+        name: "task-storage",
+      }
+    )
+  )
+);

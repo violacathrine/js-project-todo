@@ -1,9 +1,9 @@
-
 import { useState } from "react";
 import { useTaskStore } from "../stores/useTaskStore";
 import { TaskList } from "./TaskList";
+
 import { SlPlus } from "react-icons/sl";
-import { FaRegTrashAlt, FaCheckCircle, FaStar, FaRegStar } from 'react-icons/fa';
+import { FaRegTrashAlt, FaCheckCircle, FaRegCheckCircle } from 'react-icons/fa';
 import {
   FormContainer,
   StyledForm,
@@ -13,18 +13,16 @@ import {
   IconWrapper,
   StyledFunctionButton,
   ButtonRow,
-  ToggleListButton
 } from './TaskForm.styles.jsx';
 
 export const TaskForm = () => {
   const [taskValue, setTaskValue] = useState("");
   const addTask = useTaskStore((state) => state.addTask);
   const completeAllTasks = useTaskStore((state) => state.completeAllTasks);
+  const uncompleteAllTasks = useTaskStore((state) => state.uncompleteAllTasks);
   const removeAllTasks = useTaskStore((state) => state.removeAllTasks);
 
   const tasks = useTaskStore((state) => state.tasks);
-  const showStarredOnly = useTaskStore((state) => state.showStarredOnly);
-  const toggleShowStarredOnly = useTaskStore((state) => state.toggleShowStarredOnly);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,8 +32,14 @@ export const TaskForm = () => {
     }
   };
 
-  const handleCompleteAll = () => {
+  const handleToggleCompleteAll = () => {
+    const hasIncomplete = tasks.some(task => !task.isCompleted);
+
+    if (hasIncomplete) {
       completeAllTasks();
+    } else {
+      uncompleteAllTasks();
+    }
   };
 
   const handleDeleteAll = () => {
@@ -44,24 +48,20 @@ export const TaskForm = () => {
     }
   };
 
-  const handleToggleList = () => {
-    toggleShowStarredOnly();
-  };
-
-  const hasIncompleteTasks = tasks.some(task => !task.isCompleted);
+  const allTasksCompleted = tasks.every(task => task.isCompleted);
   const hasAnyTasks = tasks.length > 0;
 
   return (
     <FormContainer>
       <StyledForm onSubmit={handleSubmit}>
-        <FormLabel htmlFor="new-task">Task</FormLabel>
+        <FormLabel htmlFor="new-task"></FormLabel>
         <FormInput
           type="text"
           id="new-task"
           name="newTask"
           value={taskValue}
           onChange={(e) => setTaskValue(e.target.value)}
-          placeholder="Add task..."
+          placeholder="Add new task"
           required
         />
         <AddButton type="submit" title="Add task">
@@ -73,32 +73,25 @@ export const TaskForm = () => {
 
       {hasAnyTasks && (
         <ButtonRow>
-          {/* Button for toggling between all and starred tasks */}
-          <ToggleListButton
-            onClick={handleToggleList}
-            $active={showStarredOnly}
-            title={showStarredOnly ? "Show all" : "Show starred tasks"}
+          <StyledFunctionButton
+            $type="complete" 
+            onClick={handleToggleCompleteAll} 
           >
-            {showStarredOnly ? (
-              <><FaStar style={{ color: 'gold' }} /> Show all</>
-            ) : (
-              <><FaRegStar /> Show starred</>
-            )}
-          </ToggleListButton>
+            <IconWrapper>
+              {allTasksCompleted ? (
+                <FaRegCheckCircle />
+              ) : (
+                <FaCheckCircle />
+              )}
+            </IconWrapper>
+            {allTasksCompleted ? 'Unmark all' : 'Mark all as completed'}
+          </StyledFunctionButton>
 
-          {/* "Mark everyone as complete" - only shown if there are incomplete tasks */}
-          {hasIncompleteTasks && (
-            <StyledFunctionButton $type="complete" onClick={handleCompleteAll} title="Mark everyone as complete">
-              <IconWrapper><FaCheckCircle /></IconWrapper> Mark all as complete
-            </StyledFunctionButton>
-          )}
-
-          {tasks.length > 0 && ( // Show only if there are tasks
+          {tasks.length > 0 && (
             <StyledFunctionButton $type="delete" onClick={handleDeleteAll} title="Delete all tasks">
-              <IconWrapper><FaRegTrashAlt /></IconWrapper> Delete All
+              <IconWrapper><FaRegTrashAlt /></IconWrapper> Delete all
             </StyledFunctionButton>
           )}
-
         </ButtonRow>
       )}
     </FormContainer>

@@ -64,7 +64,7 @@ export const StarredButton = styled.button`
   border: none;
   color: ${props => props.$isStarred ? 'gold' : '#ccc'};
   cursor: pointer;
-  font-size: 1.3em;
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,6 +74,13 @@ export const StarredButton = styled.button`
   &:hover {
     color: gold;
   }
+
+  svg {
+    display: block; 
+    margin: 0; 
+    padding: 0; 
+    line-height: 1; 
+  }
 `;
 
 export const Checkbox = styled.input`
@@ -82,4 +89,10 @@ export const Checkbox = styled.input`
   height: 20px;
   cursor: pointer;
   flex-shrink: 0;
+`;
+
+export const EmptyListMessage = styled.p`
+  text-align: center;
+  color: #666;
+  margin: 20px 0;
 `;
