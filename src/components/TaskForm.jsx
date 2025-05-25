@@ -3,7 +3,7 @@ import { useTaskStore } from "../stores/useTaskStore";
 import { TaskList } from "./TaskList";
 import { Count } from "./Count"
 
-import { FaRegTrashAlt, FaCheckCircle, FaRegCheckCircle } from 'react-icons/fa';
+import { FaRegTrashAlt, FaCheckCircle, FaRegCheckCircle } from "react-icons/fa";
 import {
   FormContainer,
   StyledForm,
@@ -13,7 +13,7 @@ import {
   IconWrapper,
   StyledFunctionButton,
   ButtonRow,
-} from './TaskForm.styles.jsx';
+} from "./TaskForm.styles.jsx";
 
 export const TaskForm = () => {
   const [taskValue, setTaskValue] = useState("");
@@ -77,8 +77,8 @@ export const TaskForm = () => {
       {hasAnyTasks && (
         <ButtonRow>
           <StyledFunctionButton
-            $type="complete" 
-            onClick={handleToggleCompleteAll} 
+            $type="complete"
+            onClick={handleToggleCompleteAll}
           >
             <IconWrapper>
               {allTasksCompleted ? (
@@ -87,7 +87,7 @@ export const TaskForm = () => {
                 <FaCheckCircle />
               )}
             </IconWrapper>
-            {allTasksCompleted ? 'Unmark all' : 'Complete all'}
+            {allTasksCompleted ? "Unmark all" : "Complete all"}
           </StyledFunctionButton>
 
           {tasks.length > 0 && (

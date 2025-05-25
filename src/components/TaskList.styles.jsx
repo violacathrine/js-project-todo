@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TaskListContainer = styled.ul`
   list-style: none;
@@ -20,7 +20,7 @@ export const TaskItemWrapper = styled.li`
   transition: background-color 0.2s ease-in-out;
 
   &.completed {
-    background-color: #e6ffe6; 
+    background-color:#EDEFEF; 
     text-decoration: line-through;
     color: #666;
   }
@@ -38,7 +38,7 @@ export const TaskText = styled.label`
   align-items: center;
   flex-grow: 1;
   margin-right: 10px;
-  font-size: 1.1em;
+  font-size: 18px;
   word-break: break-word;
   cursor: pointer;
 `;
@@ -50,7 +50,7 @@ export const TaskActions = styled.div`
 `;
 
 export const DeleteButton = styled.button`
-  background-color: #dc3545;
+  background-color: darkred;
   color: white;
   border: none;
   border-radius: 50%;
@@ -60,7 +60,7 @@ export const DeleteButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 16px;
   flex-shrink: 0;
 
   &:hover {
@@ -71,7 +71,7 @@ export const DeleteButton = styled.button`
 export const StarredButton = styled.button`
   background: none;
   border: none;
-  color: ${props => props.$isStarred ? 'gold' : '#ccc'};
+  color: ${props => props.$isStarred ? "#ba4a00" : "#333333"};
   cursor: pointer;
   font-size: 22px;
   display: flex;
@@ -79,10 +79,6 @@ export const StarredButton = styled.button`
   justify-content: center;
   flex-shrink: 0;
   padding: 0;
-
-  &:hover {
-    color: gold;
-  }
 
   svg {
     display: block; 
@@ -101,7 +97,7 @@ export const Checkbox = styled.input`
   accent-color:rgb(75, 24, 203);
 `;
 
-export const EmptyListMessage = styled.div`
+export const EmptyListMessage = styled.li`
   text-align: center;
   color: #666;
   margin: 20px 0;

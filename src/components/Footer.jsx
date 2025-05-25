@@ -7,20 +7,11 @@ export const Footer = styled.footer`
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 50px; /* istället för margin-top */
-  box-sizing: border-box;
-  
+  margin-bottom: 50px; 
+  box-sizing: border-box; 
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 20px;
   font-weight: bold;
-
-  @media (max-width: 600px) {
-    font-size: 1.5rem;
-  }
-
-  @media (max-width: 400px) {
-    font-size: 1.2rem;
-  }
 `;
 
 const FooterText = styled.h2`
@@ -41,7 +32,7 @@ const FooterText = styled.h2`
     }
 
     svg {
-      font-size: 1.1em;
+      font-size: 18px;
       padding-right: 5px;
     }
   }

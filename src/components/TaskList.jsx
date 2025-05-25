@@ -1,6 +1,7 @@
-import { useTaskStore } from '../stores/useTaskStore';
-import { sortTasks } from '../utils/sortTasks.js';
-import { FaRegTrashAlt, FaStar, FaRegStar } from 'react-icons/fa';
+import { useTaskStore } from "../stores/useTaskStore";
+
+import { sortTasks } from "../utils/sortTasks.js";
+import { FaRegTrashAlt, FaStar, FaRegStar } from "react-icons/fa";
 import moment from "moment";
 
 import {
@@ -14,7 +15,7 @@ import {
   EmptyListMessage,
   TimestampText,
   TaskTextWrapper
-} from './TaskList.styles.jsx';
+} from "./TaskList.styles.jsx";
 
 export const TaskList = () => {
   const tasks = useTaskStore((state) => state.tasks);
@@ -39,7 +40,7 @@ export const TaskList = () => {
       {sortedTasks.map((task) => {
         const checkboxId = `task-${task.id}`;
         return (
-          <TaskItemWrapper key={task.id} className={task.isCompleted ? 'completed' : ''}>
+          <TaskItemWrapper key={task.id} className={task.isCompleted ? "completed" : ""}>
             <TaskTextWrapper>
               <TaskText as="label" htmlFor={checkboxId}>
                 <Checkbox
