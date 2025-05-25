@@ -23,8 +23,8 @@ export const Footer = styled.footer`
   }
 `;
 
-const FooterText = styled.p`
-  font-size: 1em;
+const FooterText = styled.h2`
+  font-size: 16px;
   text-align: center;
   color: #333;
 
@@ -51,7 +51,7 @@ export const FooterComponent = () => {
   return (
     <Footer>
       <FooterText>
-      © 2025 Designed and created {" "}
+      © 2025 Designed and created by {" "}
         <a
           href="https://github.com/violacathrine/js-project-todo"
           target="_blank"
