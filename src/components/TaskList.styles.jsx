@@ -22,6 +22,7 @@ export const TaskItemWrapper = styled.li`
   &.completed {
     background-color:#EDEFEF; 
     text-decoration: line-through;
+    font-style: italic;
     color: #666;
   }
 `;
