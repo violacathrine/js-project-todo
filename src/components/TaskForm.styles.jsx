@@ -1,6 +1,30 @@
 
 import styled from "styled-components";
 
+export const FormRow = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+
+  input,
+  .date-picker-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  height: 40px;
+  box-sizing: border-box;
+  color: #333333;
+  }
+
+    @media (min-width: 768px) {
+    flex-direction: row;
+    }
+`;
+
 export const FormContainer = styled.div`
   padding: 20px;
   background-color:rgb(237, 239, 239);

@@ -3,6 +3,9 @@ import { useTaskStore } from "../stores/useTaskStore";
 import { TaskList } from "./TaskList";
 import { Count } from "./Count"
 
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+
 import { FaRegTrashAlt, FaCheckCircle, FaRegCheckCircle } from "react-icons/fa";
 import {
   FormContainer,
@@ -13,10 +16,12 @@ import {
   IconWrapper,
   StyledFunctionButton,
   ButtonRow,
+  FormRow
 } from "./TaskForm.styles.jsx";
 
 export const TaskForm = () => {
   const [taskValue, setTaskValue] = useState("");
+  const [dueDate, setDueDate] = useState(null);
   const addTask = useTaskStore((state) => state.addTask);
   const completeAllTasks = useTaskStore((state) => state.completeAllTasks);
   const uncompleteAllTasks = useTaskStore((state) => state.uncompleteAllTasks);
@@ -27,7 +32,8 @@ export const TaskForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskValue.trim()) {
-      addTask(taskValue);
+      const dueDateString = dueDate ? dueDate.toISOString() : null;
+      addTask(taskValue, dueDateString);
       setTaskValue("");
     }
   };
@@ -57,18 +63,30 @@ export const TaskForm = () => {
         <FormLabel htmlFor="new-task" className="visually-hidden">
           Task input
         </FormLabel>
-        <FormInput
-          type="text"
-          id="new-task"
-          name="newTask"
-          value={taskValue}
-          onChange={(e) => setTaskValue(e.target.value)}
-          placeholder="Add new task"
-          required
-        />
-        <AddButton type="submit" title="Add task">
-          <IconWrapper>+</IconWrapper>
-        </AddButton>
+
+        <FormRow>
+          <FormInput
+            type="text"
+            id="new-task"
+            name="newTask"
+            value={taskValue}
+            onChange={(e) => setTaskValue(e.target.value)}
+            placeholder="Add new task"
+            required
+          />
+
+          <DatePicker
+            selected={dueDate}
+            onChange={(date) => setDueDate(date)}
+            placeholderText="Due date"
+            dateFormat="yyyy-MM-dd"
+            className="date-picker-input"
+          />
+
+          <AddButton type="submit" title="Add task">
+            <IconWrapper>+</IconWrapper>
+          </AddButton>
+        </FormRow>
       </StyledForm>
       <Count />
 

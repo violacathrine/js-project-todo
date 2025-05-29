@@ -39,6 +39,7 @@ export const TaskList = () => {
 
       {sortedTasks.map((task) => {
         const checkboxId = `task-${task.id}`;
+        const isOverdue = task.dueDate && moment(task.dueDate).isBefore(moment(), "day");
         return (
           <TaskItemWrapper key={task.id} className={task.isCompleted ? "completed" : ""}>
             <TaskTextWrapper>
@@ -51,9 +52,15 @@ export const TaskList = () => {
                 />
                 {task.text || "Unnamed task"}
               </TaskText>
-              <TimestampText>
-                {moment(task.createdAt).format("YYYY-MM-DD")}
-              </TimestampText>
+              {task.dueDate && moment(task.dueDate).isValid() && (
+                <TimestampText>
+                  Created: {moment(task.createdAt).format("YYYY-MM-DD")}<br />
+                  <span style={{ color: isOverdue ? "red" : "inherit" }}>
+                    Due: {moment(task.dueDate).format("YYYY-MM-DD")}
+                  </span>
+                </TimestampText>
+
+              )}
             </TaskTextWrapper>
 
             <TaskActions>
