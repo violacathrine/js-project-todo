@@ -13,7 +13,7 @@ const WarningText = styled.p`
   padding-top: 16px;
 
   @media (min-width: 768px) {
-text-align: center;
+  text-align: center;
   }
 `;
 

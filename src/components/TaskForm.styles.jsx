@@ -72,6 +72,7 @@ export const AddButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
   flex-shrink: 0;
   margin: 0 auto;
 
