@@ -82,7 +82,6 @@ export const TaskForm = () => {
             dateFormat="yyyy-MM-dd"
             className="date-picker-input"
           />
-
           <AddButton type="submit" title="Add task">
             <IconWrapper>+</IconWrapper>
           </AddButton>

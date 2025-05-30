@@ -110,7 +110,7 @@ export const TimestampText = styled.span`
   margin-top: 5px;
 
   @media (min-width: 767px) {
-    font-size: 14px;
+    font-size: 15px;
     display: block;
   }
 `;

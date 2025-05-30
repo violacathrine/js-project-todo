@@ -54,9 +54,8 @@ export const TaskList = () => {
               </TaskText>
               {task.dueDate && moment(task.dueDate).isValid() && (
                 <TimestampText>
-                  Created: {moment(task.createdAt).format("YYYY-MM-DD")}<br />
-                  <span style={{ color: isOverdue ? "red" : "inherit" }}>
-                    Due: {moment(task.dueDate).format("YYYY-MM-DD")}
+                  <span style={{ color: isOverdue ? "darkred" : "inherit", fontWeight: isOverdue ? "bold" : "normal" }}>
+                    {isOverdue ? "Passed" : "Duedate"}: {moment(task.dueDate).format("YYYY-MM-DD")}
                   </span>
                 </TimestampText>
 

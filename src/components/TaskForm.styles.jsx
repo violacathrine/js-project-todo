@@ -3,26 +3,27 @@ import styled from "styled-components";
 
 export const FormRow = styled.div`
   display: flex;
-  gap: 8px;
-  align-items: center;
+  gap: 12px;
+  align-items: stretch;
   width: 100%;
   flex-direction: column;
 
   input,
   .date-picker-input {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  height: 40px;
-  box-sizing: border-box;
-  color: #333333;
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    min-height: 50px;
+    box-sizing: border-box;
+    color: #333333;
+    width: 100%;
   }
 
-    @media (min-width: 768px) {
+  @media (min-width: 768px) {
     flex-direction: row;
-    }
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -72,6 +73,7 @@ export const AddButton = styled.button`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  margin: 0 auto;
 
   &:hover {
     background-color: gray;
